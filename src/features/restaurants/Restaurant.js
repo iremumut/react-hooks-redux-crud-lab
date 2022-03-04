@@ -1,13 +1,17 @@
 import React from "react";
 import ReviewsContainer from "../reviews/ReviewsContainer";
+import {useDispatch} from  "react-redux";
+import {restaurantRemoved} from  "./restaurantsSlice";
 
-function Restaurant({ restaurant }) {
+function Restaurant({ restaurant}) {
+  const dispatch = useDispatch();
+
   return (
     <div>
       <li>
         {restaurant.name}
-        <button> Delete Restaurant </button>
-        <ReviewsContainer restaurant={restaurant} />
+        <button onClick={ () => dispatch(restaurantRemoved(restaurant.id))}> Delete Restaurant </button>
+        <ReviewsContainer restaurantId={restaurant.id} />
       </li>
     </div>
   );
